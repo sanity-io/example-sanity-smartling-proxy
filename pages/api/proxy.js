@@ -5,8 +5,9 @@ const cors = initMiddleware(Cors(corsOptionsDelegate))
 
 const proxy = async (req, res) => {
   await cors(req, res)
+  //we have to clean up headers that come from CORs from the studio
   const headers = {}
-  const validHeaders = ['authorization', 'content-type', 'client-id']
+  const validHeaders = ['authorization', 'content-type', 'client-id', 'grant_type']
   validHeaders.forEach(header => {
     if (req.headers[header]) {
       headers[header] = req.headers[header]
