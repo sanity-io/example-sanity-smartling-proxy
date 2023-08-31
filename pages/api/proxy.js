@@ -41,7 +41,7 @@ const proxy = async (req, res) => {
 
   const proxyResponse = await fetch(req.headers['x-url'], proxyRequest).then(
     async proxyResponse => {
-      // returnStatus = res.status
+      returnStatus = proxyResponse?.status || 200
       if (proxyResponse.headers.get('content-type').includes('json')) {
         return proxyResponse.json()
       } else {
